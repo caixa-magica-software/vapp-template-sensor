@@ -20,7 +20,9 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-8">
 				<h3>
 					Vapp Template
 				</h3>
@@ -30,9 +32,26 @@
 					</h5>
 					<div class="card-body">
 						<div class="row">
+
 							<div class="col-md-12">
-								<textarea class="form-control" rows="5" id="sensordata"></textarea>
+								<div class="form-inline">
+									<div class="form-group mb-2">
+										<label for="staticEmail2">Topic :</label>
+										<input type="text" readonly class="form-control-plaintext" id="staticEmail2"
+											value="sensor_data_channel" style="margin-left:10px">
+									</div>
+
+									<button  class="btn btn-primary mb-2" style="margin-left:10px">change</button>
+								</div>
 							</div>
+
+						</div>
+						<div class="row">
+
+							<div class="col-md-12">
+								<textarea class="form-control" rows="7" id="sensordata"></textarea>
+							</div>
+
 						</div>
 					</div>
 					<div class="card-footer">
@@ -49,6 +68,8 @@
 					</button>
 
 				</div>
+			</div>
+			<div class="col-md-2">
 			</div>
 		</div>
 	</div>
