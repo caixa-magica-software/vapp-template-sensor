@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Template of vApp - Sensor data sample</title>
+
+	<meta name="description" content="Simple vApp to demostrate vfos Components">
+	<meta name="author" content="Vitor Viana">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>
+					Vapp Template
+				</h3>
+				<div class="card">
+					<h5 class="card-header">
+						Sensor 1 Data
+					</h5>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<textarea class="form-control" rows="5" id="sensordata"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+
+					</div>
+				</div>
+				<div class="btn-group" role="group">
+
+					<button class="btn btn-secondary" type="button" id="add-btn">
+						Get Data
+					</button>
+					<button class="btn btn-secondary" type="button" id="clear-btn">
+						Clear
+					</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+
+
+	<script script language='javascript'>
+		var counter = 0;
+		$(document).ready(function () {
+			var $textarea = $('#sensordata');
+			$textarea.scrollTop($textarea[0].scrollHeight);
+
+
+			// $('#add-btn').click(function () {
+			// 	addToTextarea($('#sensordata'), counter);
+			// 	counter++;
+			// });
+
+			$('#clear-btn').click(function () {
+				$('#sensordata').val('');
+				counter = 0;
+			});
+
+
+		});
+
+		function addToTextarea($ta, text) {
+			var val = $ta.val();
+			if (val) {
+				$ta.val(val + '\n' + text);
+			} else {
+				$ta.val(text);
+			}
+			$ta.scrollTop($ta[0].scrollHeight);
+		}
+
+
+		setInterval(() => {
+			console.log('Data from sensor')
+			var text = $('#sensordata').val();
+			addToTextarea($('#sensordata'), 'cenas')
+			counter++;
+		}, 1000 * 2)
+	</script>
+
+
+
+</body>
+
+</html>

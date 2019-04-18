@@ -1,0 +1,20 @@
+{
+   "packages" : [
+            {
+                "code" : "enabler-framework",
+                "description" : "Enablers Framework",
+                "adding" : false
+            },
+            {
+                "code" : "datastorage",
+                "description" : "Data Storage",
+                "adding" : false
+            },
+            {
+                "code" : "pubsub",
+                "description" : "Messaging",
+                "adding" : true
+            }
+   ]
+
+}
