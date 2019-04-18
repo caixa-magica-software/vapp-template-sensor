@@ -1,6 +1,6 @@
 FROM node:alpine
 
-ENV ASSET_NAME="sensor"
+ENV ASSET_NAME="vapp-template-sensor"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
