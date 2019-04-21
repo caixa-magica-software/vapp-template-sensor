@@ -11,10 +11,19 @@
                 "adding" : false
             },
             {
+                "code" : "datastorage_nosql",
+                "description" : "Data Storage NoSQL",
+                "adding" : false
+            },
+            {
+                "code" : "datastorage_timeseries",
+                "description" : "Data Storage Time Series",
+                "adding" : false
+            },
+            {
                 "code" : "pubsub",
                 "description" : "Messaging",
-                "adding" : true
+                "adding" : false
             }
    ]
-
 }
