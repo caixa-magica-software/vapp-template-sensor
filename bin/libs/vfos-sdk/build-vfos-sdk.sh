@@ -12,9 +12,9 @@ then
     cd vfos-oak-sdk-lib-code
     sudo npm link
     cd vfos-oak-sdk-lib-code
-    sudo yo-gen-run --name vfos-sdk --config config.json --allow-root
+    sudo yo-gen-run --name vfos-sdk --config ../answers.json --allow-root
 else
     echo "vfos-sdk code found!"
     cd vfos-oak-sdk-lib-code
-    sudo yo-gen-run --name vfos-sdk --config config.json --allow-root
+    sudo yo-gen-run --name vfos-sdk --config ../answers.json --allow-root
 fi
