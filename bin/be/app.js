@@ -24,7 +24,9 @@ app.use(expressValidator());
 
 // requires routes dynamically
 fs.readdirSync(binProcessesFolder).forEach(file => {
-  require(rootProcessesFolder + file)(app);
+    if(file !== ".gitkeep") {
+      require(rootProcessesFolder + file)(app);
+    }
 });
 
 // catch 404 and forward to error handler
