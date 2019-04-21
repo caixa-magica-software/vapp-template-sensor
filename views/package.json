@@ -4,7 +4,7 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "start": "PORT=4021 node run.js"
+    "start": "PORT=4201 node run.js"
   },
   "author": "",
   "license": "ISC",
