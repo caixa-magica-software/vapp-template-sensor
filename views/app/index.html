@@ -19,6 +19,7 @@
 <body>
 
 	<div class="container-fluid">
+
 		<div class="row">
 			<div class="col-md-2">
 			</div>
@@ -41,7 +42,7 @@
 											value="sensor_data_channel" style="margin-left:10px">
 									</div>
 
-									<button  class="btn btn-primary mb-2" style="margin-left:10px">change</button>
+									<button class="btn btn-primary mb-2" style="margin-left:10px">change</button>
 								</div>
 							</div>
 
@@ -55,8 +56,10 @@
 						</div>
 					</div>
 					<div class="card-footer">
+						<div><span id='status_icon' class="dot_green"></span> <span id='status_text'></span></div>
 
 					</div>
+
 				</div>
 				<div class="btn-group" role="group">
 
@@ -76,12 +79,17 @@
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="js/scripts.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
 
 
 	<script script language='javascript'>
 		var counter = 0;
 		$(document).ready(function () {
+
+			console.log('backend : ', app.baseUrl)
+
 			var $textarea = $('#sensordata');
 			$textarea.scrollTop($textarea[0].scrollHeight);
 
@@ -95,6 +103,8 @@
 				$('#sensordata').val('');
 				counter = 0;
 			});
+
+			checkAlive();
 
 
 		});
@@ -115,7 +125,34 @@
 			var text = $('#sensordata').val();
 			addToTextarea($('#sensordata'), 'cenas')
 			counter++;
-		}, 1000 * 2)
+		}, 1000 * 3)
+
+
+		function checkAlive() {
+			let ico = $('#status_icon');
+			ico.removeClass('class');
+			ico.attr('class','')
+			axios({
+					method: 'GET',
+					url: app.baseUrl,
+				})
+				.then(function (response) {
+					console.log('AFTER RESP ', response)
+					if (response.status == 200) {
+						ico.addClass('dot_green');
+						$('#status_text').text(response.data.message)
+					} else {
+						ico.addClass('dot_red');
+						$('#status_text').text('not connected')
+					}
+					// response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+				})
+				.catch(function (error) {
+					ico.addClass('dot_red');
+					$('#status_text').text('not connected')
+					console.log(error);
+				});
+		}
 	</script>
 
 
