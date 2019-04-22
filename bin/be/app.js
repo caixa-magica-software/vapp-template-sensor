@@ -3,41 +3,60 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var fs = require('fs');
+const recursiveReadSync = require('recursive-readdir-sync')
+const contains = require("string-contains")
 const expressValidator = require('express-validator');
-const rootProcessesFolder = '../../logic/processes/';
-const binProcessesFolder = './logic/processes/';
+
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(expressValidator());
 
-// requires routes dynamically
-fs.readdirSync(binProcessesFolder).forEach(file => {
-    if(file !== ".gitkeep") {
-      require(rootProcessesFolder + file)(app);
+try {
+  recursiveReadSync('logic/processes').forEach(file => {
+    if (!contains(file, '.gitkeep')) {
+      require('../../' + file)(app);
     }
+  });
+} catch (err) {
+  if (err.errno === 34) {
+    console.log('Path does not exist');
+  } else {
+    //something unrelated went wrong, rethrow
+    throw err;
+  }
+}
+
+/**
+ * welcome backend route
+*/
+app.get('/', (req, res) => {
+  res.json({
+      message : 'vApp backend is running',
+      data: new Date()
+  });
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
