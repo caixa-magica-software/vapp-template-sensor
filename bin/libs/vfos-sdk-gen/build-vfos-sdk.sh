@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-echo "fetching vfos-sdk code!"
-echo "should running inside folder vfos-sdk-gen"
+echo "Fetching vfos-sdk code!"
+echo "Should running inside folder vfos-sdk-gen"
 
 
 # add permissions to current user in libs/ folder avoind sudo
