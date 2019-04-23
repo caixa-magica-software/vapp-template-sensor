@@ -88,8 +88,7 @@
 		var counter = 0;
 		$(document).ready(function () {
 
-			console.log('backend : ', app.baseUrl)
-
+			
 			var $textarea = $('#sensordata');
 			$textarea.scrollTop($textarea[0].scrollHeight);
 
@@ -134,7 +133,7 @@
 			ico.attr('class','')
 			axios({
 					method: 'GET',
-					url: app.baseUrl + app.aliveRoute,
+					url: app.aliveRoute,
 				})
 				.then(function (response) {
 					console.log('AFTER RESP ', response)
