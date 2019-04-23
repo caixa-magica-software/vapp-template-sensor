@@ -24,9 +24,8 @@
     "devDependencies": {},
     "scripts": {
         "boot": "npm install && npm install --prefix views",
-        "start-fe": "npm start --prefix views",
         "start-be": "node ./bin/be/index.js",
-        "start": "concurrently --kill-others \"npm run start-fe\" \"npm run start-be\""
+        "start": "concurrently --kill-others \"npm run start-be\""
     },
     "author": "vfos",
     "license": "ISC"

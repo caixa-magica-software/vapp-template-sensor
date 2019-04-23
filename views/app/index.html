@@ -134,7 +134,7 @@
 			ico.attr('class','')
 			axios({
 					method: 'GET',
-					url: app.baseUrl,
+					url: app.baseUrl + app.aliveRoute,
 				})
 				.then(function (response) {
 					console.log('AFTER RESP ', response)

@@ -10,25 +10,31 @@ const expressValidator = require('express-validator');
 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(path.normalize(__dirname), '../../views/app')));
 app.use(expressValidator());
+
+let routesRegisted = [];
 
 try {
   recursiveReadSync('logic/processes').forEach(file => {
     if (!contains(file, '.gitkeep')) {
-      require('../../' + file)(app);
+
+      let tempArr = file.split('/');
+      if (tempArr.length > 2) {
+        let routeRoot = tempArr[tempArr.length - 2];
+        let r = '/api/' + routeRoot;
+        routesRegisted.push(r);
+        app.use(r, require('../../' + file)(app))
+      }
     }
   });
+  console.log('ROUTES => ', routesRegisted)
 } catch (err) {
   if (err.errno === 34) {
     console.log('Path does not exist');
@@ -38,10 +44,12 @@ try {
   }
 }
 
+
+
 /**
  * avoid cors 
-*/
-app.use(function(req, res, next) {
+ */
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -49,11 +57,11 @@ app.use(function(req, res, next) {
 
 /**
  * welcome backend route
-*/
-app.get('/', (req, res) => {
+ */
+app.get('/api/version', (req, res) => {
   res.json({
-      message : 'vApp backend is running',
-      data: new Date()
+    message: 'vApp backend is running',
+    data: new Date()
   });
 });
 
