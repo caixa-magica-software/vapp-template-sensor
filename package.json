@@ -23,8 +23,8 @@
     },
     "devDependencies": {},
     "scripts": {
-        "boot": "npm install && npm install --prefix views",
-        "start-be": "node ./bin/be/index.js",
+        "boot": "npm install",
+        "start-be": "PORT=4201 node ./bin/be/index.js",
         "start": "concurrently --kill-others \"npm run start-be\""
     },
     "author": "vfos",
