@@ -1,0 +1,30 @@
+{
+  "MESSAGING_PUBSUB": {
+    "SERVER_URL": "amqp://rumgcxja:cpCfei7G2_Q19JyF18t36glpsNsMJZIE@impala.rmq.cloudamqp.com/rumgcxja"
+  },
+  "DATASTORAGE_RELATIONAL": {
+    "SERVER_URL": "http://127.0.0.1:8083/vfos/rel/1.0.0/swagger-ui.html",
+    "USER": "postgres",
+    "PASSWORD": "vfos"
+  },
+  "DATASTORAGE_NO_SQL": {
+    "SERVER_URL": "http://127.0.0.1:8083/vfos/rel/1.0.0/swagger-ui.html",
+    "USER": "postgres",
+    "PASSWORD": "vfos"
+  },
+  "DATASTORAGE_TIMESERIES": {
+    "SERVER_URL": "http://127.0.0.1:8083/vfos/rel/1.0.0/swagger-ui.html",
+    "USER": "postgres",
+    "PASSWORD": "vfos"
+  },
+  "DATASTORAGE_ONTOLOGIES": {
+    "SERVER_URL": "http://127.0.0.1:8083/vfos/rel/1.0.0/swagger-ui.html",
+    "USER": "postgres",
+    "PASSWORD": "vfos"
+  },
+  "ENABLER_FRAMEWORK": {
+    "SERVER_URL": "",
+    "USER": "",
+    "PASSWORD": ""
+  }
+}
