@@ -88,7 +88,7 @@
 		var counter = 0;
 		$(document).ready(function () {
 
-			
+
 			var $textarea = $('#sensordata');
 			$textarea.scrollTop($textarea[0].scrollHeight);
 
@@ -126,6 +126,14 @@
 			counter++;
 		}, 1000 * 3)
 
+		console.log('DOMAIN ', window.location.hostname )
+		console.log('LOCATION ', window.location.href )
+		let clean = window.location.href.replace('index.html', '');
+		var final =  clean + app.aliveRoute
+		console.log('PATH ',final )
+
+		
+		console.log('CENAS : ', clean)
 
 		function checkAlive() {
 			let ico = $('#status_icon');
@@ -133,7 +141,7 @@
 			ico.attr('class','')
 			axios({
 					method: 'GET',
-					url: app.aliveRoute,
+					url: final,
 				})
 				.then(function (response) {
 					console.log('AFTER RESP ', response)

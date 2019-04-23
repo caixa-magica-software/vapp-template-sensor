@@ -1,4 +1,4 @@
 app = { 
     baseUrl: 'http://localhost:4201',
-    aliveRoute : '/api/version'
+    aliveRoute : 'api/version'
 }

@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(path.normalize(__dirname), '../../views/app')));
+app.use('/', express.static(path.join(path.normalize(__dirname), '../../views/app')));
 app.use(expressValidator());
 
 let routesRegisted = [];
