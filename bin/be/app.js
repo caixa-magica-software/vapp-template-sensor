@@ -61,11 +61,11 @@ app.use(function (req, res, next) {
 });
 
 
-app.get('/static', (req, res) => {
-  res.sendFile('index.html', {
-    root: path.join(path.normalize(__dirname), '../../views/app')
-  });
-});
+// app.get('/static', (req, res) => {
+//   res.sendFile('index.html', {
+//     root: path.join(path.normalize(__dirname), '../../views/app')
+//   });
+// });
 
 // app.get('/app', (req, res) => {
 //   res.sendFile('index.html', {
@@ -83,10 +83,18 @@ app.get('/api/version', (req, res) => {
   });
 });
 
+var url = require('url');
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+  let ur = url.format({
+    protocol: req.protocol,
+    host: req.get('host'),
+    pathname: req.originalUrl
+  });
+  err.url = ur;
+  console.log('res url ', ur);
   next(err);
 });
 
