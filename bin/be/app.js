@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use('/', express.static(path.join(path.normalize(__dirname), '../../views/app')));
+let assetName = process.env.ASSET_NAME;
+console.log('ASSET_NAME ',assetName );
+app.use('/' + assetName +'/app', express.static(path.join(__dirname, '../../views/dist')));
+
 app.use(expressValidator());
 
 let routesRegisted = [];
