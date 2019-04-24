@@ -16,10 +16,11 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use('/', express.static(path.join(path.normalize(__dirname), '../../views/app')));
+app.use(express.static(path.join(path.normalize(__dirname), '../../views/app')));
 let assetName = process.env.ASSET_NAME;
-console.log('ASSET_NAME ',assetName );
-app.use('/' + assetName +'/app', express.static(path.join(__dirname, '../../views/dist')));
+console.log('ASSET_NAME ', assetName);
+//'/' + assetName +'/app', 
+app.use(express.static(path.join(__dirname, '../../views/dist')));
 
 app.use(expressValidator());
 
@@ -57,6 +58,19 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
+});
+
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {
+    root: path.join(path.normalize(__dirname), '../../views/app')
+  });
+});
+
+app.get('/app', (req, res) => {
+  res.sendFile('index.html', {
+    root: path.join(path.normalize(__dirname), '../../views/dist')
+  });
 });
 
 /**
