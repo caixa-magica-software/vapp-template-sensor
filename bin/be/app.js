@@ -16,11 +16,11 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use('/static', express.static(path.join(path.normalize(__dirname), '../../views/app')));
+app.use('/view', express.static(path.join(path.normalize(__dirname), '../../views/app')));
 let assetName = process.env.ASSET_NAME;
 console.log('ASSET_NAME ', assetName);
 //'/' + assetName +'/app', 
-app.use('/' + assetName + '/app', express.static(path.join(__dirname, '../../views/dist')));
+app.use('/app', express.static(path.join(__dirname, '../../views/dist')));
 
 app.use(expressValidator());
 
