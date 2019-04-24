@@ -25,7 +25,7 @@
     "scripts": {
         "boot": "npm install && npm install --prefix views",
         "start-be": "PORT=4201 node ./bin/be/index.js",
-        "start": "concurrently --kill-others \"npm run start-be\""
+        "start": "ASSET_NAME=$ASSET_NAME concurrently --kill-others \"npm run start-be\" --deploy-url \"/$ASSET_NAME/app/\" --base-href \"/$ASSET_NAME/app/\""
     },
     "author": "vfos",
     "license": "ISC"
