@@ -23,8 +23,9 @@
     },
     "devDependencies": {},
     "scripts": {
-        "boot": "npm install && npm install --prefix views",
+        "boot": "npm install && npm install --prefix views && npm run build_fe",
         "start-be": "PORT=4201 node ./bin/be/index.js",
+        "build_fe": "npm run env -s && ng build --aot --deploy-url \"/$ASSET_NAME/app/\" --base-href \"/$ASSET_NAME/app/\" ",
         "start": "ASSET_NAME=$ASSET_NAME concurrently --kill-others \"npm run start-be\" --deploy-url \"/$ASSET_NAME/app/\" --base-href \"/$ASSET_NAME/app/\""
     },
     "author": "vfos",
