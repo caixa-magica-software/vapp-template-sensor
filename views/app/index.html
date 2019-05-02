@@ -38,11 +38,12 @@
 								<div class="form-inline">
 									<div class="form-group mb-2">
 										<label for="staticEmail2">Topic :</label>
-										<input type="text" readonly class="form-control-plaintext" id="staticEmail2"
-											value="sensor_data_channel" style="margin-left:10px">
+										<input type="text" class="form-control-plaintext" id="newTopic"
+											value="pt.vfos.channel.test" style="margin-left:10px">
 									</div>
 
-									<button class="btn btn-primary mb-2" style="margin-left:10px">change</button>
+									<button class="btn btn-primary mb-2" id="btn-ChangeTopic"
+										style="margin-left:10px">change</button>
 								</div>
 							</div>
 
@@ -98,9 +99,34 @@
 			// 	counter++;
 			// });
 
+			/**
+			 * clear the text area
+			 */
 			$('#clear-btn').click(function () {
 				$('#sensordata').val('');
 				counter = 0;
+			});
+
+			/**
+			 * get new data
+			 */
+			$('#add-btn').click(function () {
+				getAllMessages();
+			});
+
+			/**
+			 * change topic
+			 */
+			$('#btn-ChangeTopic').click(function () {
+				var nTopic = $("#newTopic").val()
+				console.log('new Topic is ', nTopic)
+				if(nTopic && nTopic.length > 0){
+					changeTopic(nTopic);
+				}
+				else{
+					console.log('should supply a new topic valid' );
+				}
+				
 			});
 
 			checkAlive();
@@ -119,28 +145,23 @@
 		}
 
 
-		setInterval(() => {
-			console.log('Data from sensor')
-			var text = $('#sensordata').val();
-			addToTextarea($('#sensordata'), 'cenas')
-			counter++;
-		}, 1000 * 3)
+		// setInterval(() => {
+		// 	console.log('Data from sensor')
+		// 	var text = $('#sensordata').val();
+		// 	addToTextarea($('#sensordata'), 'cenas')
+		// 	counter++;
+		// }, 1000 * 3)
 
-		console.log('DOMAIN ', window.location.hostname )
-		console.log('LOCATION ', window.location.href )
+		console.log('DOMAIN ', window.location.hostname)
+		console.log('LOCATION ', window.location.href)
 		let clean = window.location.href.replace('index.html', '');
-		var final =  clean + app.aliveRoute
-		console.log('PATH ',final )
-
-		
-		console.log('CENAS : ', clean)
-
+		var final = clean + app.aliveRoute
 		console.log('CALL API ', final)
 
 		function checkAlive() {
 			let ico = $('#status_icon');
 			ico.removeClass('class');
-			ico.attr('class','')
+			ico.attr('class', '')
 			axios({
 					method: 'GET',
 					url: final,
@@ -154,13 +175,81 @@
 						ico.addClass('dot_red');
 						$('#status_text').text('not connected')
 					}
-			
+
 				})
 				.catch(function (error) {
 					ico.addClass('dot_red');
 					$('#status_text').text('not connected')
 					console.log(error);
 				});
+		}
+
+		function getAllMessages() {
+			var messageURl = clean + app.getMessages
+			console.log('get Messages from ', messageURl)
+			axios({
+					method: 'GET',
+					url: messageURl,
+				})
+				.then(function (response) {
+					// console.log('AFTER RESP ', response)
+					if (response.status == 200) {
+						console.log('response ', response.data.messages)
+						if (response.data.messages && response.data.messages.length > 0) {
+							console.log('should control ', )
+							// let finalStg = ''
+							// for(var i in response.data.messages)
+							// {
+							// 	finalStg += JSON.stringify(response.data.messages[i]) + '/n';
+							// }
+
+							addToTextarea($('#sensordata'), JSON.stringify(response.data.messages))
+						}
+					} else {
+						// ico.addClass('dot_red');
+						// $('#status_text').text('not connected')
+					}
+
+				})
+				.catch(function (error) {
+
+					console.log('error getting messages ', error);
+				});
+
+		}
+
+		/*
+			change topic
+		*/
+		function changeTopic(newTopic) {
+			var changeTopicUrl = clean + app.changeTopic
+			console.log('get Messages from ', changeTopicUrl)
+			axios({
+					method: 'post',
+					url: changeTopicUrl,
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					data: {
+						topic: newTopic
+					}
+				})
+				.then(function (response) {
+					// console.log('AFTER RESP ', response)
+					if (response.status == 200) {
+						console.log('response ', response)
+
+					} else {
+						// ico.addClass('dot_red');
+						// $('#status_text').text('not connected')
+					}
+
+				})
+				.catch(function (error) {
+
+					console.log('error getting messages ', error);
+				});
+
 		}
 	</script>
 

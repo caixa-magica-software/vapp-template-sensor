@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use('/vw', express.static(path.join(path.normalize(__dirname), '../../views/app')));
+app.use('/', express.static(path.join(path.normalize(__dirname), '../../views/app')));
 let assetName = process.env.ASSET_NAME;
 console.log('ASSET_NAME ', assetName);
 //'/' + assetName +'/app', 
