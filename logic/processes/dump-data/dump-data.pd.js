@@ -15,7 +15,7 @@ var routingKeys = ["#"];
  *  begging of section to archive messaging from a topic
  */
 var communications = new vfosMessagingPubsub(broker, userName, domain, routingKeys);
-let Topic = "pt.vfos.channel.test";
+var Topic = "pt.vfos.channel.test";
 let listOfGettingMessages = [];
 
 function messageHandler(msg) {
@@ -86,8 +86,8 @@ router.route('/change_topic').post(
 	function (req, res, next) {
 
 		console.log('body is ', req.body)
-		Topic = req.body.topic || Topic;
-
+		Topic = req.body.topic;
+		console.log('TOPIC is ',Topic )
 		/* Clear and recreate the interval
 		 */
 		clearInterval(myTimer);
