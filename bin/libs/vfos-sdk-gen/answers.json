@@ -1,13 +1,1 @@
-{
-    "answers": {
-        "name": "vfos-sdk",
-        "enabler-framework": true,
-        "datastorage": true,
-        "datastorage_nosql": true,
-        "datastorage_timeseries": true,
-        "pubsub": true
-    },
-    "options": {
-        "onconflict": "force"
-    }
-}
+{"answers": {"name": "vfos-sdk","enabler-framework":false,"datastorage":false,"datastorage_nosql":false,"datastorage_timeseries":false,"pubsub":true},"options": {"onconflict": "force"}}
