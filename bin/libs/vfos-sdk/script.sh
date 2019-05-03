@@ -10,15 +10,20 @@ if [ ! -d "$path" ]; then
   mkdir $path
 fi
 
+#check if the folder not exist
+if [ ! -d "components/vfos-messaging" ]; then
+  echo "vfos-messaging not imported"
+  messaging="https://masterviana@opensourceprojects.eu/git/p/vfos/middleware/msg/code vfos-messaging"
+  cd $path
+  git clone $messaging
+fi
 
- #messaging 
-messaging="https://masterviana@opensourceprojects.eu/git/p/vfos/middleware/msg/code vfos-messaging"
-cd $path
-git clone $messaging
-
- #restheart client
-restheart="https://github.com/masterviana/restheart-js-client.git"
+#check if the folder not exist
+if [ ! -d "components/restheart-js-client" ]; then
+  echo "restheart-js-client not imported"
+  restheart="https://github.com/masterviana/restheart-js-client.git"
 git clone -b vfos $restheart
+fi
 
 #enablers framework
 # enablersf="--recurse-submodules http://git-gris.uninova.pt/vfos/enablers-framework.git vfos-enablers-framework"
