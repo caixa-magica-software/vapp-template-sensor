@@ -13,7 +13,7 @@ fi
 #check if the folder not exist
 if [ ! -d "components/vfos-messaging" ]; then
   echo "vfos-messaging not imported"
-  messaging="https://masterviana@opensourceprojects.eu/git/p/vfos/middleware/msg/code vfos-messaging"
+  messaging="http://git-gris.uninova.pt/vfos/lib-messaging-pub-sub-js.git vfos-messaging"
   cd $path
   git clone $messaging
 fi
