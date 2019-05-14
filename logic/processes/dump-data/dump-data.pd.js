@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 
-let vfosMessagingPubsub = sdk.messagingNoIssue;
+let vfosMessagingPubsub = sdk.messaging;
 var broker = sdk.config.MESSAGING_PUBSUB.SERVER_URL;
 var userName = "archiver1";
 var domain = "pt.vfos";
