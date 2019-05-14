@@ -1,6 +1,6 @@
 {
   "MESSAGING_PUBSUB": {
-    "SERVER_URL": "amqp://jijfhlcy:3CUlVZBTehPKPQxfz8Jz3EEMQSa8D5UX@puma.rmq.cloudamqp.com/jijfhlcy",
+    "SERVER_URL": "rabbitmq",
     "TOKEN": "091023913982389"
   },
   "DATASTORAGE_RELATIONAL": {
