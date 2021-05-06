@@ -20,7 +20,7 @@
         "request": "^2.83.0",
         "string-contains": "^0.1.0",
         "superagent": "^5.0.5",
-        "underscore": "^1.9.1",
+        "underscore": "^1.12.1",
         "yeoman-gen-run": "^1.2.3"
     },
     "devDependencies": {},
